@@ -2,14 +2,14 @@ import * as express from 'express';
 import axios from 'axios';
 
 export class WeatherApi {
-  private _router:express.Router = express.Router();
+  private _router: express.Router = express.Router();
 
   constructor() {
     this.setupRoutes();
   }
 
-  private setupRoutes():void {
-    this._router.get('/', (req:any, res) => {
+  private setupRoutes(): void {
+    this._router.get('/', (req: any, res) => {
       const latitude = 48.86;
       const longitude = 2.34;
       const location = req.query.location || 'New York';
@@ -26,7 +26,7 @@ export class WeatherApi {
     })
   }
 
-  private processLocationResponse({ data, status, res }: { data: any, status: number, res: any }):void {
+  private processLocationResponse({ data, status, res }: { data: any, status: number, res: any }): void {
     if (data?.results[0] && data?.results[0].geometry) {
       this.processLocation(data.results[0].geometry.lat, data.results[0].geometry.lng, res)
     } else {
@@ -34,13 +34,13 @@ export class WeatherApi {
     }
   }
 
-  private processLocationError(error:any, res:any):void {
+  private processLocationError(error: any, res: any): void {
     console.error(error);
     res.status(400).send(this.makeError("Cannot get location"))
   }
 
 
-  private processLocation(latitude:number, longitude:number, res:any):void {
+  private processLocation(latitude: number, longitude: number, res: any): void {
     const hourlyPart = "hourly=temperature_2m,precipitation_probability,precipitation,weathercode,windspeed_10m,winddirection_10m";
     const dailyPart = "daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max";
     axios.get<any>(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&lang=en&units=metric&current_weather=true&${hourlyPart}&${dailyPart}&timezone=GMT`,
@@ -49,14 +49,14 @@ export class WeatherApi {
           Accept: 'application/json'
         },
       }).then(({ data, status }) => this.processWeatherResponse({
-      data,
-      status,
-      res
-    }), (err) => this.processWeatherError(err, res));
+        data,
+        status,
+        res
+      }), (err) => this.processWeatherError(err, res));
   }
 
 
-  private processWeatherResponse({ data, status, res }: { data: any, status: number, res: any }):void {
+  private processWeatherResponse({ data, status, res }: { data: any, status: number, res: any }): void {
     const weathercode = data.current_weather.weathercode
     let todaysData: any[] = [];
     let dailyData: any[] = [];
@@ -71,14 +71,14 @@ export class WeatherApi {
       today: todaysData,
       daily: dailyData
     };
-    for(let i = 0; i < data.hourly.time.length; i++) {
+    for (let i = 0; i < data.hourly.time.length; i++) {
       todaysData.push({
         time: data.hourly.time[i],
         temperature: data.hourly.temperature_2m[i],
         type: this.mapWeatherCode(data.hourly.weathercode[i]),
       })
     }
-    for(let i = 0; i < data.daily.time.length; i++) {
+    for (let i = 0; i < data.daily.time.length; i++) {
       dailyData.push({
         time: data.daily.time[i],
         temperatureMin: data.daily.temperature_2m_min[i],
@@ -133,16 +133,16 @@ export class WeatherApi {
     return type;
   }
 
-  private processWeatherError(error:any, res:any):void {
+  private processWeatherError(error: any, res: any): void {
     console.log(error);
     res.status(400).send(this.makeError("Cannot get weather info"))
   }
 
-  private makeError(error:string):any {
-    return {error};
+  private makeError(error: string): any {
+    return { error };
   }
 
-  public getRouter():express.Router {
+  public getRouter(): express.Router {
     return this._router;
   }
 

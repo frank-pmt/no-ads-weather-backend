@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import {WeatherApi} from './weather';
+import { WeatherApi } from './weather';
 import dotenv from 'dotenv';
 
 class App {
