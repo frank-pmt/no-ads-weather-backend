@@ -8,6 +8,11 @@ This project is a ReactJS and NodeJS based application that can display weather 
 
 The application leverages the [OpenCage Geocoding API](https://opencagedata.com/) as well as the [Open-meteo Weather API](https://open-meteo.com/)
 
+## Limitations
+
+The application uses the first result of the place name lookup.
+In future versions this will be addressed so the user can select the place name if there are multiple matches.
+
 ## Installation
 
 ### Requirements
