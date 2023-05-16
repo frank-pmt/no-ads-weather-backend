@@ -2,7 +2,7 @@
 
 ## About
 
-This project is a ReactJS and NodeJS based application that can display weather information
+This project is a ReactJS and NodeJS based application that can display weather information.
 
 ## Services utilized
 
