@@ -90,7 +90,7 @@ export class WeatherApi {
     res.send(weatherResponse);
   }
 
-  private mapWeatherCode(weathercode: number): string {
+  public mapWeatherCode(weathercode: number): string {
     // TODO: improve on mapping
     let type = "";
     switch (weathercode) {
