@@ -13,9 +13,13 @@ export function formatDayName(time:string):string {
 
 export function formatDay(time:string):string {
     const d = new Date(time);
-    return d.getDate() + "/" + d.getMonth();
+    return d.getDate() + "/" + (d.getMonth() + 1);
 }
 
 export function formatWindSpeed(speed: number): string {
     return Math.round(speed).toString();
+}
+
+export function formatTemperature(temperature: number): string {
+    return Math.round(temperature).toString();
 }

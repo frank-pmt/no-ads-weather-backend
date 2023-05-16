@@ -1,6 +1,6 @@
 import './DailyForecastItem.css';
 import WeatherIcon from './WeatherIcon';
-import { formatDayName, formatDay } from "../utils/utils";
+import {formatDayName, formatDay, formatTemperature} from "../utils/utils";
 
 type DailyForecastItemProps = {
     time: string;
@@ -22,11 +22,11 @@ function DailyForecastItem({ time, temperatureMin, temperatureMax, precipitation
                 <WeatherIcon type={type} size={32} />
             </div>
             <div className="low">
-                <div>{temperatureMin} ℃</div>
+                <div>{formatTemperature(temperatureMin)} ℃</div>
                 <div>Low</div>
             </div>
             <div className="high">
-                <div>{temperatureMax} ℃</div>
+                <div>{formatTemperature(temperatureMax)} ℃</div>
                 <div>High</div>
             </div>
             <div className="rain">

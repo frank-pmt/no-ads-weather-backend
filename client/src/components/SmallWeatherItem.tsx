@@ -1,6 +1,6 @@
 import './SmallWeatherItem.css';
 import WeatherIcon from './WeatherIcon';
-import { formatTime } from "../utils/utils";
+import {formatTime, formatTemperature} from "../utils/utils";
 
 type SmallWeatherItemProps = {
     time: string;
@@ -13,7 +13,7 @@ function SmallWeatherItem({ time, temperature, type }: SmallWeatherItemProps) {
         <div className="small-item">
             <h5>{formatTime(time)}</h5>
             <WeatherIcon type={type} size={32} />
-            <p>{temperature} ℃</p>
+            <p>{formatTemperature(temperature)} ℃</p>
         </div>
     );
 }
