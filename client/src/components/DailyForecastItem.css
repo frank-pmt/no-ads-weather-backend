@@ -1,0 +1,32 @@
+.daily-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    text-align: center;
+}
+
+.daily-item .day {
+    font-size: 15px;
+    font-weight: 700;
+    width: 20%;
+}
+
+.daily-item .icon {
+    width: 20%;
+    text-align: center;
+    padding-top: 3px;
+}
+
+.daily-item .low {
+    width: 20%;
+}
+
+.daily-item .high {
+    width: 20%;
+}
+
+.daily-item .rain {
+    width: 20%;
+}

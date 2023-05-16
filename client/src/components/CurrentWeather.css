@@ -1,0 +1,36 @@
+.current-weather-container {
+    display: flex;
+}
+
+.current-weather-container div {
+    padding-right: 20px;
+}
+
+.temperature-container {
+
+    padding: 10px 0 10px 0;
+}
+
+.temperature-container .temperature {
+    font-size: 5.25em;
+    font-weight: 300;
+}
+
+.temperature-container .type {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.current-weather-container .icon {
+    padding: 10px 0px 10px 10px;
+}
+
+.current-weather-container .wind {
+    display: flex;
+    padding: 10px 0px 10px 20px;
+}
+
+.current-weather-container .speed {
+    padding-left: 10px;
+}
+
