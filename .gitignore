@@ -10,7 +10,8 @@ server/dist
 .pnp.js
 
 # testing
-/coverage
+/client/coverage
+/server/coverage
 
 # production
 /build
