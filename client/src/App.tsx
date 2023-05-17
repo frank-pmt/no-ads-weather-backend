@@ -17,6 +17,7 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState<WeatherDataItem>({ time: "", temperature: 0, type: "cloudy" });
   const [todaysWeather, setTodaysWeather] = useState<WeatherDataItem[]>([]);
   const [dailyForecast, setDailyForecast] = useState<WeatherDataItem[]>([]);
+  const [error, setError] = useState<string>("");
 
 
   useEffect(() => {
@@ -39,6 +40,7 @@ function App() {
         setDailyForecast(data.daily);
       }, (error: any) => {
         setLoading(false);
+        setError('Unable to get weather information');
         // TODO: handle error properly
         console.log(error);
       });
@@ -60,6 +62,7 @@ function App() {
           <input type="text" className="location-input" value={location} placeholder="Enter location..." onChange={onLocationChange} />
           <button type="button" id="search-button" onClick={searchClicked}>Search</button>
         </form>
+        {error && <div className="error">{error}</div>}
       </div>
 
       <div className="location">

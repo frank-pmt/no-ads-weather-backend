@@ -13,6 +13,8 @@ server/dist
 /client/coverage
 /server/coverage
 
+/server/.env
+
 # production
 /build
 
