@@ -6,7 +6,7 @@ This project is a ReactJS and NodeJS based application that can display weather 
 
 ## Services utilized
 
-The application leverages the [OpenCage Geocoding API](https://opencagedata.com/) as well as the [Open-meteo Weather API](https://open-meteo.com/)
+The application leverages the [Open-meteo Weather API](https://open-meteo.com/)
 
 ## Limitations
 
