@@ -19,17 +19,11 @@ In future versions this will be addressed so the user can select the place name 
 
 You need to have at least NodeJS 16 installed to run the app locally.
 
-You will also need to get an API KEY for place name lookups here: https://opencagedata.com/api#quickstart
-
-This is required because the application looks up latitude and longitude information for the place names entered by the user using the GEO API, then the
-latitude and longitude are passed down to the weather API.
-
 ### Running the server
 
 Simply run the following commands inside the server directory
 
 ```
-    export GEO_API_KEY=YOUR_API_KEY
     npm install
     npm run build
     npm run start
@@ -37,15 +31,13 @@ Simply run the following commands inside the server directory
 
 You should see a message "App listening on the port 3000".
 
-Hint: You could also put the GEO_API_KEY into a .env file
-
 ### Running the client
 
 Simply run the following commands inside the server directory
 
 ```
-    npm install
     export PORT=3001
+    npm install
     npm run start
 ```
 

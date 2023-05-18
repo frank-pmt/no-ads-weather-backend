@@ -19,20 +19,6 @@ export class WeatherApi {
     })
   }
 
-  private processLocationResponse({ data, status, res }: { data: any, status: number, res: any }): void {
-    if (data?.results[0] && data?.results[0].geometry) {
-      this.getWeatherInfo(data.results[0].geometry.lat, data.results[0].geometry.lng, res);
-    } else {
-      res.status(400).send(this.makeError('Cannot get location'))
-    }
-  }
-
-  private processLocationError(error: any, res: any): void {
-    console.error(error.response);
-    res.status(400).send(this.makeError('Cannot get location'))
-  }
-
-
   private getWeatherInfo(latitude: number, longitude: number, res: any): void {
     const hourlyPart = 'hourly=temperature_2m,precipitation_probability,precipitation,weathercode,windspeed_10m,winddirection_10m';
     const dailyPart = 'daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max';
@@ -82,6 +68,12 @@ export class WeatherApi {
     }
     res.send(weatherResponse);
   }
+  
+  private processWeatherError(error: any, res: any): void {
+    console.log(error.response);
+    res.status(400).send(this.makeError('Cannot get weather info'))
+  }
+
 
   public mapWeatherCode(weathercode: number): string {
     // TODO: improve on mapping
@@ -128,11 +120,6 @@ export class WeatherApi {
 
   private isNumber(value?: string | number): boolean {
     return value != null && value !== '' && !isNaN(Number('' + value));
-  }
-
-  private processWeatherError(error: any, res: any): void {
-    console.log(error.response);
-    res.status(400).send(this.makeError('Cannot get weather info'))
   }
 
   private makeError(error: string): any {
