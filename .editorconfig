@@ -1,0 +1,13 @@
+root = true
+insert_final_newline = true
+# Set default charset
+[*.{js,ts,tsx}]
+charset = utf-8
+
+[client/**.{ts,js,tsx}]
+indent_style = space
+indent_size = 2
+
+[server/**.{js,ts}]
+indent_style = space
+indent_size = 2
