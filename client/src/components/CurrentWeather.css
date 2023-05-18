@@ -12,22 +12,23 @@
 }
 
 .temperature-container .temperature {
-    font-size: 5.25em;
+    font-size: 4.5rem;
     font-weight: 300;
 }
 
 .temperature-container .type {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     text-align: center;
 }
 
 .current-weather-container .icon {
-    padding: 10px 0px 10px 10px;
+    padding: 10px 30px 10px 10px;
 }
 
 .current-weather-container .wind {
     display: flex;
     padding: 10px 0px 10px 20px;
+    font-size: 1.25rem;
 }
 
 .current-weather-container .speed {

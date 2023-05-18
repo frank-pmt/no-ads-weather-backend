@@ -2,16 +2,19 @@ import express from 'express';
 import path from 'path';
 import { WeatherApi } from './weather';
 import dotenv from 'dotenv';
+import {LocationApi} from "./location";
 
 class App {
 
   private _app: express.Application;
   private _weatherApi: WeatherApi;
+  private _locationApi: LocationApi;
 
 
   constructor() {
     this._app = express();
     this._weatherApi = new WeatherApi();
+    this._locationApi = new LocationApi();
     this.initApp();
   }
 
@@ -19,6 +22,7 @@ class App {
     dotenv.config();
     this._app.use(express.static(path.join(__dirname, '../../client/build')));
     this._app.use('/api/weather', this._weatherApi.getRouter());
+    this._app.use('/api/location', this._locationApi.getRouter());
   }
 
   public start() {
