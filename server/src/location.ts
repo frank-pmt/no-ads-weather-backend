@@ -25,9 +25,14 @@ export class LocationApi {
           if (err) throw (err);
           data.toString().split(/\n/).forEach(function (line) {
             let cols = line.split(/\t/);
-            if (cols && cols.length >= 1 && cols[1] && cols[1].startsWith(query)) {
-              const fullName = cols[1] + ', ' + cols[8];
-              matches.push({ name: cols[1], latitude: cols[4], longitude: cols[5], fullName: fullName });
+            if (cols && cols.length >= 1 && cols[1]) {
+              const placeName = cols[1];
+              if (placeName.startsWith(query)) {
+                const countryCode = cols[8];
+                const state = cols[10];
+                const fullName = countryCode === 'US' ? `${placeName}, ${state}, US` : `${placeName}, ${countryCode}`;
+                matches.push({ name: placeName, latitude: cols[4], longitude: cols[5], fullName: fullName });
+              }
             }
           });
           res.send(matches);
