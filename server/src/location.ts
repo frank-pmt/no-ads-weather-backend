@@ -8,6 +8,23 @@ export interface LocationResponseItem {
   longitude: string;
 }
 
+const processDataFromFile = (query: string, data: string): LocationResponseItem[] => {
+  let matches: LocationResponseItem[] = [];
+  data.toString().split(/\n/).forEach(function (line) {
+    let cols = line.split(/\t/);
+    if (cols && cols.length >= 1 && cols[1]) {
+      const placeName = cols[1];
+      if (placeName.startsWith(query)) {
+        const countryCode = cols[8];
+        const state = cols[10];
+        const fullName = countryCode === 'US' ? `${placeName}, ${state}, US` : `${placeName}, ${countryCode}`;
+        matches.push({name: placeName, latitude: cols[4], longitude: cols[5], fullName: fullName});
+      }
+    }
+  });
+  return matches;
+}
+
 export class LocationApi {
   private _router: express.Router = express.Router();
 
@@ -23,13 +40,12 @@ export class LocationApi {
     const file = './static/data/cities5000.txt';
     const query = req.query.q;
     if (query && query.length >= 2) {
-      const _this = this;
       try {
-        fs.readFile(file, 'utf8', function (err, data) {
+        fs.readFile(file, 'utf8', (err, data) => {
           if (err) {
             res.json({ error: err });
           } else {
-            res.json(_this.processDataFromFile(query, data));
+            res.json(processDataFromFile(query, data));
           }
         });
       } catch (err) {
@@ -39,23 +55,6 @@ export class LocationApi {
       // Too short query so don't read file
       res.json([]);
     }
-  }
-
-  private processDataFromFile(query: string, data: string): LocationResponseItem[] {
-    let matches: LocationResponseItem[] = [];
-    data.toString().split(/\n/).forEach(function (line) {
-      let cols = line.split(/\t/);
-      if (cols && cols.length >= 1 && cols[1]) {
-        const placeName = cols[1];
-        if (placeName.startsWith(query)) {
-          const countryCode = cols[8];
-          const state = cols[10];
-          const fullName = countryCode === 'US' ? `${placeName}, ${state}, US` : `${placeName}, ${countryCode}`;
-          matches.push({name: placeName, latitude: cols[4], longitude: cols[5], fullName: fullName});
-        }
-      }
-    });
-    return matches;
   }
 
   public getRouter(): express.Router {

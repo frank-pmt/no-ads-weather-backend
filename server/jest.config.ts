@@ -16,6 +16,9 @@ export default {
     "node"
   ],
   testEnvironment: "jsdom",
+  testMatch: [
+    '**/__tests__/**.test.ts',
+  ],
   
   transform: {
     "^.+\\.(t|j)s?$": "ts-jest",
