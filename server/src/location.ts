@@ -16,32 +16,46 @@ export class LocationApi {
   }
 
   private setupRoutes(): void {
-    this._router.get('/search', (req: any, res) => {
-      const file = './static/data/cities5000.txt';
-      const query = req.query.q;
-      if (query && query.length >= 2) {
-        let matches: LocationResponseItem[] = [];
+    this._router.get('/search', this.processLocationRequest);
+  }
+  
+  public processLocationRequest(req: any, res: any): void {
+    const file = './static/data/cities5000.txt';
+    const query = req.query.q;
+    if (query && query.length >= 2) {
+      const _this = this;
+      try {
         fs.readFile(file, 'utf8', function (err, data) {
-          if (err) throw (err);
-          data.toString().split(/\n/).forEach(function (line) {
-            let cols = line.split(/\t/);
-            if (cols && cols.length >= 1 && cols[1]) {
-              const placeName = cols[1];
-              if (placeName.startsWith(query)) {
-                const countryCode = cols[8];
-                const state = cols[10];
-                const fullName = countryCode === 'US' ? `${placeName}, ${state}, US` : `${placeName}, ${countryCode}`;
-                matches.push({ name: placeName, latitude: cols[4], longitude: cols[5], fullName: fullName });
-              }
-            }
-          });
-          res.send(matches);
+          if (err) {
+            res.json({ error: err });
+          } else {
+            res.json(_this.processDataFromFile(query, data));
+          }
         });
-      } else {
-        // Too short query so don't read file
-        res.send([]);
+      } catch (err) {
+        res.status(500).json({ error: err });
       }
-    })
+    } else {
+      // Too short query so don't read file
+      res.json([]);
+    }
+  }
+
+  private processDataFromFile(query: string, data: string): LocationResponseItem[] {
+    let matches: LocationResponseItem[] = [];
+    data.toString().split(/\n/).forEach(function (line) {
+      let cols = line.split(/\t/);
+      if (cols && cols.length >= 1 && cols[1]) {
+        const placeName = cols[1];
+        if (placeName.startsWith(query)) {
+          const countryCode = cols[8];
+          const state = cols[10];
+          const fullName = countryCode === 'US' ? `${placeName}, ${state}, US` : `${placeName}, ${countryCode}`;
+          matches.push({name: placeName, latitude: cols[4], longitude: cols[5], fullName: fullName});
+        }
+      }
+    });
+    return matches;
   }
 
   public getRouter(): express.Router {

@@ -14,7 +14,7 @@ export class WeatherApi {
         this.getWeatherInfo(req.query.latitude, req.query.longitude, res);
       } else {
         const error = !this.isNumber(req.query.latitude) ? 'Missing or incorrect parameter latitude' : 'Missing or incorrect parameter longitude';
-        res.status(400).send(this.makeError(error))
+        res.status(400).json(this.makeError(error))
       }
     })
   }
@@ -66,12 +66,12 @@ export class WeatherApi {
         precipitationProbabilityMax: data.daily.precipitation_probability_max[i],
       })
     }
-    res.send(weatherResponse);
+    res.json(weatherResponse);
   }
   
   private processWeatherError(error: any, res: any): void {
     console.log(error.response);
-    res.status(400).send(this.makeError('Cannot get weather info'))
+    res.status(400).json(this.makeError('Cannot get weather info'))
   }
 
 
