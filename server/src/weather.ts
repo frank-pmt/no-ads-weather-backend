@@ -98,6 +98,13 @@ export class WeatherApi {
       case 55:
         type = 'drizzly';
         break;
+      case 71:
+      case 73:
+      case 75:
+      case 85:
+      case 86:
+        type = 'snow';
+        break;   
       case 61:
       case 63:
       case 65:
