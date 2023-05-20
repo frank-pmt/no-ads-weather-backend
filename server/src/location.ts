@@ -10,11 +10,12 @@ export interface LocationResponseItem {
 
 const processDataFromFile = (query: string, data: string): LocationResponseItem[] => {
   let matches: LocationResponseItem[] = [];
+  const queryLC = query.toLowerCase();
   data.toString().split(/\n/).forEach(function (line) {
     let cols = line.split(/\t/);
     if (cols && cols.length >= 1 && cols[1]) {
       const placeName = cols[1];
-      if (placeName.startsWith(query)) {
+      if (placeName.toLowerCase().startsWith(queryLC)) {
         const countryCode = cols[8];
         const state = cols[10];
         const fullName = countryCode === 'US' ? `${placeName}, ${state}, US` : `${placeName}, ${countryCode}`;

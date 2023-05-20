@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
     "target": "es2016",
     "module": "commonjs",
     "moduleResolution": "node",
