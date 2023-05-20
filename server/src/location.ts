@@ -1,5 +1,6 @@
 import * as express from "express";
 import fs from 'fs';
+import path from 'path';
 
 export interface LocationResponseItem {
   name: string;
@@ -38,7 +39,7 @@ export class LocationApi {
   }
   
   public processLocationRequest(req: any, res: any): void {
-    const file = './static/data/cities5000.txt';
+    const file = path.join(__dirname, './static/data/cities5000.txt');
     const query = req.query.q;
     if (query && query.length >= 2) {
       try {
