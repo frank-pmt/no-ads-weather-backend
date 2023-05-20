@@ -20,7 +20,7 @@ class App {
 
   private initApp(): void {
     dotenv.config();
-    this._app.use(express.static(path.join(__dirname, '../../client/build')));
+    this._app.use(express.static(path.join(__dirname, './build')));
     this._app.use('/api/weather', this._weatherApi.getRouter());
     this._app.use('/api/location', this._locationApi.getRouter());
   }
