@@ -81,8 +81,8 @@ function App() {
       </div>
 
       {currentWeather &&
-        <div className="location">
-          <div>
+        <div className="weather-info">
+          <div className="location">
             <div>{locationDisplayed}</div>
             <div className=".date">{currentDate}</div>
           </div>

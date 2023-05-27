@@ -24,3 +24,43 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
+
+@media screen and (min-width: 1140px) {
+    .main-container {
+        width: 880px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .main-container {
+        width: 360px;
+    }
+    .weather-info .location {
+        font-size: 1.25rem;
+    }
+    .current-weather-container {
+        flex-direction: column;
+    }
+    .weather-by-hour .daily-row .small-item {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+    .temperature-container .temperature {
+       font-size: 1.25rem;
+    }
+}
+
+
+
+@media screen and (min-width: 1140px) {
+    .current-weather-container {
+        flex-direction: row;
+    }
+    .current-weather-container-detail {
+        padding-left: 20px;
+    }
+    .temperature-container .temperature {
+        font-size: 4.5rem;
+    }
+}
