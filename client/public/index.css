@@ -36,8 +36,17 @@ body {
     .main-container {
         width: 360px;
     }
+    .main-container form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+    .weather-info {
+        width: 100%;
+    }
     .weather-info .location {
         font-size: 1.25rem;
+        font-weight: 500;
     }
     .current-weather-container {
         flex-direction: column;
@@ -48,6 +57,13 @@ body {
     }
     .temperature-container .temperature {
        font-size: 1.25rem;
+    }
+    .forecast-days .daily-item {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .forecast-days .daily-item .day {
+        font-weight: 500;
     }
 }
 

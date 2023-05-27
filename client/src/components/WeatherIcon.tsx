@@ -1,3 +1,5 @@
+import './WeatherIcon.css';
+
 type WeatherIconProps = {
   type: string;
   size: number;
@@ -16,14 +18,14 @@ function WeatherIcon({ type, size }: WeatherIconProps) {
     <span>
       {
         {
-          'sunny': <img className="icon" src={"images/sun-" + sizeOverride + ".png"} alt="Sunny" title="Sunny"/>,
-          'cloudy': <img className="icon" src={"images/cloudy-" + sizeOverride + ".png"} alt="Cloudy" title="Cloudy"/>,
-          'drizzly': <img className="icon" src={"images/drizzle-" + sizeOverride + ".png"} alt="Drizzle" title="Drizzle"/>,
-          'rainy': <img className="icon" src={"images/rain-" + sizeOverride + ".png"} alt="Rainy" title="Rainy"/>,
-          'snow': <img className="icon" src={"images/snow-" + sizeOverride + ".png"} alt="Snow" title="Snow"/>,
-          'foggy': <img className="icon" src={"images/fog-" + sizeOverride + ".png"} alt="Foggy" title="Foggy"/>,
-          'overcast': <img className="icon" src={"images/overcast-" + sizeOverride + ".png"} alt="Overcast" title="Overcast"/>,
-          'thunderstorm': <img className="icon" src={"images/thunderstorm-" + sizeOverride + ".png"} alt="Thunderstorm" title="Thunderstorm"/>
+          'sunny': <img className={"icon " + type} src={"images/sun-" + sizeOverride + ".png"} alt="Sunny" title="Sunny"/>,
+          'cloudy': <img className={"icon " + type} src={"images/cloudy-" + sizeOverride + ".png"} alt="Cloudy" title="Cloudy"/>,
+          'drizzly': <img className={"icon " + type} src={"images/drizzle-" + sizeOverride + ".png"} alt="Drizzle" title="Drizzle"/>,
+          'rainy': <img className={"icon " + type} src={"images/rain-" + sizeOverride + ".png"} alt="Rainy" title="Rainy"/>,
+          'snow': <img className={"icon " + type} src={"images/snow-" + sizeOverride + ".png"} alt="Snow" title="Snow"/>,
+          'foggy': <img className={"icon " + type} src={"images/fog-" + sizeOverride + ".png"} alt="Foggy" title="Foggy"/>,
+          'overcast': <img className={"icon " + type} src={"images/overcast-" + sizeOverride + ".png"} alt="Overcast" title="Overcast"/>,
+          'thunderstorm': <img className={"icon " + type} src={"images/thunderstorm-" + sizeOverride + ".png"} alt="Thunderstorm" title="Thunderstorm"/>
         }[type]
       }
     </span>
