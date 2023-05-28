@@ -9,7 +9,7 @@
     "build-server": "npm --prefix server install && npm --prefix server run build",
     "build-client": "npm --prefix client install && npm --prefix client run build",
     "dist": "mkdir -p dist && cp -RT server/dist dist/ && cp -R server/node_modules dist/node_modules && cp -R server/static dist/static && cp package*json dist/ && cp -R client/build dist/build",
-    "start": "node dist/index.js",
+    "start": "node index.js",
     "test": "npm --prefix server test; npm --prefix client test"
   },
   "repository": {
