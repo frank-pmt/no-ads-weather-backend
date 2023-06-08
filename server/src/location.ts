@@ -39,7 +39,7 @@ export class LocationApi {
   }
   
   public processLocationRequest(req: any, res: any): void {
-    const file = path.join(__dirname, './static/data/cities5000.txt');
+    const file = path.join(__dirname, './static/data/cities15000.txt');
     const query = req.query.q;
     if (query && query.length >= 2) {
       try {
