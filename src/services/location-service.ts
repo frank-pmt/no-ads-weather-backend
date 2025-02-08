@@ -3,6 +3,7 @@ const readline = require('readline');
 import path from 'path';
 import { LocationMatches, LocationResponse } from "../types/location-response";
 
+
 const CITIES_DATA_FILE = '../static/data/cities15000.txt';
 
 export interface LocationResponseItem {
