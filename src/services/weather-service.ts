@@ -1,4 +1,3 @@
-// backend/src/services/weatherService.ts
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { DailyWeatherResponse, DetailedWeatherResponse, WeatherResponse } from '../types/weather-response';

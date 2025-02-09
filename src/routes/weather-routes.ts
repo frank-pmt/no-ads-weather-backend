@@ -1,4 +1,3 @@
-// backend/src/routes/weatherRoutes.ts
 import { Router } from 'express';
 import { WeatherService } from '../services/weather-service';
 
