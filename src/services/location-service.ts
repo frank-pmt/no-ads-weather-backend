@@ -93,9 +93,9 @@ export class LocationService {
     }
 
     public async lookupLocation(location: string): Promise<LocationResponse> {
-        if (location && location.length >= 2) {
+        if (location && location.trim().length >= 2) {
             try {
-                const matches = await processDataFromFile(location, this.filePath);
+                const matches = await processDataFromFile(location.trim(), this.filePath);
                 return {
                     location: location,
                     matches: matches
